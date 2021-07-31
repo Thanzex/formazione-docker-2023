@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  simpleapp
+  namespace: default
+  labels:
+    app:  simpleapp
+spec:
+  selector:
+    matchLabels:
+      app: simpleapp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  simpleapp
+    spec:
+      containers:
+      - name:  simpleapp
+        image:  simpleapp
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3030
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3030
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+
+        env:
+        - name: MESSAGE
+          value: "Messaggio da Kubernetes!"
+
+        # - name: MESSAGE
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: simpleapp
+        #       key: MESSAGE
+
+        ports:
+        - containerPort:  3030
+          name:  simpleapp
+      #   volumeMounts:
+      #   - name: localtime
+      #     mountPath: /etc/localtime
+      # volumes:
+      #   - name: localtime
+      #     hostPath:
+      #       path: /usr/share/zoneinfo/Asia/Shanghai
+      restartPolicy: Always

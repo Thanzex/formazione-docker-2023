@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simpleapp
+  namespace: default
+spec:
+  selector:
+    app: simpleapp
+  type: NodePort
+  ports:
+  - name: simpleapp
+    protocol: TCP
+    port: 80
+    targetPort: 3030
+    nodePort: 30080
