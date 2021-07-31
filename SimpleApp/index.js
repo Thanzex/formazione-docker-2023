@@ -28,6 +28,8 @@ app.get('/increment', (req, res) => {
   const counter = fs.readFileSync('counter.txt', 'utf8')
   fs.writeFileSync('counter.txt', `${parseInt(counter) + 1}`)
   res.send(`Current count: ${counter}`)
+app.get('/ip',(req,res)=> {
+  res.send(process.env.HOSTNAME)
 })
 
 app.listen(port)
