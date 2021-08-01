@@ -1,4 +1,10 @@
-# Scaletta
+# Formazione Docker & Kubernetes : Hands-on
+## Requisiti
+- Git, ovviamente
+- [Docker Desktop](https://www.docker.com/get-started)
+- [K3D](https://k3d.io/#installation)
+
+## Scaletta
 1. Riassunto (scaletta)
 2. Problemi che andiamo a risolvere
 3. Docker
@@ -23,3 +29,8 @@
 	5. Servizi
 	6. Volumi
 	7. Configurazione
+
+
+## Comandi
+``` 
+```
