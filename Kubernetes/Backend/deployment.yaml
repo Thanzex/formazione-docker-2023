@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  simpleapp
+  name:  backend
   namespace: default
   labels:
-    app:  simpleapp
+    app:  backend
 spec:
   selector:
     matchLabels:
-      app: simpleapp
+      app: backend
   replicas: 1
   template:
     metadata:
       labels:
-        app:  simpleapp
+        app:  backend
     spec:
       containers:
-      - name:  simpleapp
-        image:  simpleapp
+      - name:  backend
+        image:  backend
         imagePullPolicy: IfNotPresent
         resources:
           requests:
@@ -54,7 +54,7 @@ spec:
         # - name: MESSAGE
         #   valueFrom:
         #     configMapKeyRef:
-        #       name: simpleapp
+        #       name: backend
         #       key: MESSAGE
 
         ports:
