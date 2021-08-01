@@ -1,5 +1,6 @@
 const express = require('express')
 const fs = require('fs')
+const fetch = require('node-fetch')
 
 const app = express()
 const port = 3030
@@ -28,6 +29,23 @@ app.get('/increment', (req, res) => {
   const counter = fs.readFileSync('counter.txt', 'utf8')
   fs.writeFileSync('counter.txt', `${parseInt(counter) + 1}`)
   res.send(`Current count: ${counter}`)
+})
+
+app.get('/quote', async (req, res) => {
+  if (!process.env.BACKEND) {
+    res.status(500)
+    res.send('No Backend configured')
+  }
+  
+  try {
+    const response = await fetch('http://' + process.env.BACKEND + '/quote')
+    const quote = await response.json()
+    res.send(quote)
+  }
+  catch(err) {
+    res.status(500)
+    res.send(err)
+  }
 })
 
 app.listen(port)
