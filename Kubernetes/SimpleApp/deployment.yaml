@@ -51,14 +51,14 @@ spec:
         - name: MESSAGE
           value: "Messaggio da Kubernetes!"
 
+        - name: BACKEND
+          value: backend
+
         # - name: MESSAGE
         #   valueFrom:
         #     configMapKeyRef:
         #       name: simpleapp
         #       key: MESSAGE
-
-        - name: BACKEND
-          value: backend
 
         ports:
         - containerPort:  3030

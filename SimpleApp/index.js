@@ -11,8 +11,7 @@ app.use(logger())
 app.use('/', express.static('public'))
 
 app.get('/health', (req, res) => {
-  res.status(200)
-  res.send('Ok')
+  res.status(200).send('Ok')
 })
 
 app.get('/message', (req, res) => {
@@ -35,8 +34,7 @@ app.get('/ip',(req,res)=> {
 
 app.get('/quote', async (req, res) => {
   if (!process.env.BACKEND) {
-    res.status(500)
-    res.send('No Backend configured')
+    res.status(500).send('No Backend configured')
   }
   
   try {
@@ -45,8 +43,7 @@ app.get('/quote', async (req, res) => {
     res.send(quote)
   }
   catch(err) {
-    res.status(500)
-    res.send(err)
+    res.status(500).send(err)
   }
 })
 
