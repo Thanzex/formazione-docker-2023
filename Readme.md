@@ -32,5 +32,48 @@
 
 
 ## Comandi
-``` 
+
+### Docker
+
+``` docker
+docker run nginx -p 8080:80
 ```
+
+``` docker
+node .
+```
+
+``` docker
+docker build -t simpleapp .
+```
+
+``` docker
+docker run simpleapp --name simpleapp
+```
+
+``` docker
+docker stop simpleapp
+```
+
+``` docker
+docker run simpleapp --name simpleapp -p 8080:3030
+```
+
+``` docker
+docker run simpleapp --name simpleapp -p 8080:3030 -e MESSAGE="Messaggio da Docker!"
+```
+
+``` docker
+docker run simpleapp --name simpleapp -p 8080:3030 -e MESSAGE="Messaggio da Docker!" -v "PATH\Docker\volumes:/public/test"
+```
+
+``` docker
+docker exec -it simpleapp /bin/bash
+```
+
+### Kubernetes
+
+``` bash
+k3d cluster create -p "8081:30080@agent[0]" --agents 1 --registry-create
+```
+
