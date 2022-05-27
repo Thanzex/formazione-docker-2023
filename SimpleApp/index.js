@@ -36,13 +36,13 @@ app.get('/quote', async (req, res) => {
     res.status(500)
     res.send('No Backend configured')
   }
-  
+
   try {
     const response = await fetch('http://' + process.env.BACKEND + '/quote')
     const quote = await response.json()
     res.send(quote)
   }
-  catch(err) {
+  catch (err) {
     res.status(500)
     res.send(err)
   }

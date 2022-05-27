@@ -1,0 +1,13 @@
+services:
+  backend:
+    image: backend
+
+  frontend:
+    image: simpleapp
+    ports: 
+      - 8080:3030
+    environment:
+      MESSAGE: "Hello from docker compose."
+      BACKEND: backend:3030
+    depends_on:
+      - backend
